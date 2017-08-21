@@ -1,0 +1,11 @@
+author: Stefan Schliebs
+title: Cool Shiny App
+make-side-bar-collapsed: TRUE
+restrict-max-width: TRUE
+modules:
+  - id: start
+    name: Start
+    icon: home
+  - id: help
+    name: Help
+    icon: question

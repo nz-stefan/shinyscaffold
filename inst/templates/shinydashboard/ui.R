@@ -19,10 +19,11 @@ db_sidebar <- dashboardSidebar(
   sidebarMenu(
     id = "tabs",
     {{#modules}}
-    menuItem("{{value.name}}", tabName = "{{value.id}}", icon = icon("{{value.icon}}"))
+    menuItem("{{value.name}}", tabName = "{{value.id}}", icon = icon("{{value.icon}}")),
     {{/modules}}
+    .list = NULL
   ),
-  collapsed = TRUE
+  collapsed = {{style.side-bar-collapsed}}
 )
 
 
@@ -37,18 +38,18 @@ db_body <- dashboardBody(
   tags$head(
     tags$link(rel = "stylesheet", type = "text/css", href = "assets/css/style.css")
   ),
-  {{#make-side-bar-collapsed}}
+  {{#style.make-side-bar-collapsed}}
   # make sidebar collapse when a menu item is clicked
   tags$script("$('.sidebar-menu a').click(function (e) {
               $('body').addClass('sidebar-collapse');
               $('body').removeClass('sidebar-open');
               });"),
-  {{/make-side-bar-collapsed}}
-  {{#restrict-max-width}}
+  {{/style.make-side-bar-collapsed}}
+  {{#style.restrict-max-width}}
   # set a max width for the content (looks nicer on larger screens)
   # change max width in the CSS file
   tags$script("$('.content-wrapper').addClass('fixed-width');"),
-  {{/restrict-max-width}}
+  {{/style.restrict-max-width}}
   # add content for each menu item
   tabItems(
     {{#modules}}
@@ -57,9 +58,10 @@ db_body <- dashboardBody(
     tabItem(
       tabName = "{{value.id}}",
       {{value.id}}ModuleUI("{{value.id}}_module")
-    )
+    ),
 
     {{/modules}}
+    tabItem("dummy")
   )
 )
 
@@ -70,5 +72,5 @@ ui <- dashboardPage(
   db_header,
   db_sidebar,
   db_body,
-  skin = "red"
+  skin = "{{style.dashboard-skin}}"
 )

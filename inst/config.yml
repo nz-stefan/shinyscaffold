@@ -1,0 +1,57 @@
+###############################################################################
+# Configuration file to scaffold a Shiny app.
+#
+# TODO: Add a bit more information to this header
+###############################################################################
+
+## General ####################################################################
+
+# Author will appear in the header of each generated file
+author: Stefan Schliebs
+
+# Title of the application
+title: Cool Shiny App
+
+# Directory in which the app will be installed (relative to current directory)
+app-directory: app
+
+
+## Style ######################################################################
+
+# Set generic template to use for the app, valid values are "shinydashboard"
+app-template: shinydashboard
+
+style:
+  # set default state of the side menu
+  side-bar-collapsed: TRUE
+
+  # collapse side menu when a menu item is clicked (useful if app is used on
+  # small screens)
+  make-side-bar-collapsed: TRUE
+
+  # set a max width for the content (looks nicer on larger screens)
+  restrict-max-width: TRUE
+
+  # set the skin of the dashboard, valid values are "blue", "black",
+  # "purple", "green", "red", "yellow"
+  dashboard-skin: yellow
+
+
+## Modules ####################################################################
+
+# A Shiny module allows logical separation of functionality. Each page (tab) in
+# the scaffolded app is assumed to be implemented in its own module. A module
+# has the following attributes:
+# - id: Identifier used in the generated R code to identify the module
+# - name: Name of the module to be shown in the menubar
+# - icon: Icon to be shown in the menubar. Must be a valid FontAwesome name or
+#   a Glyphicon. Checkout http://fontawesome.io/icons/ and
+#   http://getbootstrap.com/components/#glyphicons for valid icon identifiers.
+
+modules:
+  - id: start
+    name: Start
+    icon: home
+  - id: help
+    name: Help
+    icon: question

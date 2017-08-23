@@ -1,0 +1,86 @@
+/** Theme adjustments ********************************************************/
+
+.skin-green .left-side, .skin-green .main-sidebar {
+  background-color: #222d32;
+}
+
+.skin-green .wrapper {
+  background-color: #ecf0f5;
+}
+
+.fixed-width {
+  max-width: 1200px;
+}
+
+
+/** Pulldown button **********************************************************/
+
+.btn-chart {
+  padding: 2px 10px 2px 10px;
+  background-color: #EEE;
+  font-weight: 500;
+}
+
+
+/** Help button **************************************************************/
+
+.btn-help, .btn-help:active:focus {
+  color: white !important;
+  box-shadow: none;
+  background-color: Transparent !important;
+  background-repeat: no-repeat;
+  border: none !important;
+  cursor:pointer;
+  overflow: hidden;
+  outline: none;
+  padding: 5px 10px;
+  margin-top: 10px;
+  margin-right: 20px;
+}
+
+.btn-help:hover {
+  color: #EEEEEE !important;
+}
+
+
+/** Material design cards ****************************************************/
+
+.card {
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.16), 0 2px 5px 0 rgba(0, 0, 0, 0.12);
+}
+
+.card {
+  margin-top: 10px;
+  box-sizing: border-box;
+  border-radius: 2px;
+  background-clip: padding-box
+}
+.card .card-content {
+  padding: 16px;
+  border-radius: 0 0 2px 2px;
+  background-clip: padding-box;
+  box-sizing: border-box;
+}
+.card .card-content p {
+  margin: 0;
+  color: inherit;
+}
+
+
+/** Appearance of form labels ************************************************/
+
+.control-label {
+    display: inline-block;
+    max-width: 100%;
+    margin-bottom: 5px;
+    font-weight: 400;
+    color: gray;
+    font-size: 0.9em;
+}
+
+
+/** Appearance of data tables ************************************************/
+
+.dataTables_paginate {
+  font-size: 0.75em;
+}

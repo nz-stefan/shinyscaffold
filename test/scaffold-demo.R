@@ -1,8 +1,9 @@
 library(shinyscaffold)
 
-yaml_config_file <- system.file("config.yml", package = "shinyscaffold")
-yaml_config <- readLines(yaml_config_file)
-writeLines(yaml_config, con = "~/tmp/app/config.yml")
+scaffold_config("~/tmp/app/config.yml")
+setwd("~/tmp")
+scaffold_app("~/tmp/app/config.yml", overwrite = TRUE)
+
 
 setwd("~/tmp")
-scaffold_app("~/tmp/app/config.yml")
+scaffold_app("~/tmp/config.yml", overwrite = TRUE)

@@ -1,0 +1,113 @@
+/** Navbar styles ************************************************************/
+
+/* Hide title and arrows */
+.navbar-header, .navbar-default .caret {
+   display: none;
+}
+
+.navbar-default .navbar-nav > li.active > a, .dropdown-menu > li.active > a {
+   font-weight: 400;
+   color: red;
+}
+
+/* Navbar background */
+.navbar-default {
+   background-color: transparent;
+   border-color: transparent;
+}
+
+/* Top-level nav buttons */
+.navbar-default .navbar-nav > li {
+   border-top: 2px solid transparent;
+}
+.navbar-default .navbar-nav > li:hover {
+   border-top: 2px solid red;
+   color: red;
+}
+.navbar-default .navbar-nav > .open > a, .navbar-default .navbar-nav > .open > a:focus, .navbar-default .navbar-nav > .open > a:hover {
+   background-color: transparent;
+   text-decoration: underline;
+}
+.navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active > a:focus, .navbar-default .navbar-nav > .active > a:hover {
+   background-color: transparent;
+   color: red;
+}
+
+/* Drop-down navigation box */
+.dropdown-menu {
+   background-color: #e6e6e6;
+}
+/* Drop-down navigation buttons */
+.dropdown-menu > li > a:hover {
+   /*color: inherit;*/
+   background-color: inherit;
+   text-decoration: underline;
+}
+.dropdown-menu > .active > a, .dropdown-menu > .active > a:focus, .dropdown-menu > .active > a:hover {
+   color: inherit;
+   background-color: inherit;
+}
+
+
+/** Help button **************************************************************/
+
+.btn-help, .btn-help:active:focus {
+  color: #444 !important;
+  box-shadow: none;
+  background-color: Transparent !important;
+  background-repeat: no-repeat;
+  border: none !important;
+  cursor:pointer;
+  overflow: hidden;
+  outline: none;
+  padding: 5px 10px;
+  margin-top: 12px;
+  margin-right: 20px;
+}
+
+.btn-help:hover {
+  color: #222 !important;
+}
+
+
+/** Material design cards ****************************************************/
+
+.card {
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.16), 0 2px 5px 0 rgba(0, 0, 0, 0.12);
+}
+
+.card {
+  margin-top: 10px;
+  box-sizing: border-box;
+  border-radius: 2px;
+  background-clip: padding-box
+}
+.card .card-content {
+  padding: 16px;
+  border-radius: 0 0 2px 2px;
+  background-clip: padding-box;
+  box-sizing: border-box;
+}
+.card .card-content p {
+  margin: 0;
+  color: inherit;
+}
+
+
+/** Appearance of form labels ************************************************/
+
+.control-label {
+    display: inline-block;
+    max-width: 100%;
+    margin-bottom: 5px;
+    font-weight: 400;
+    color: gray;
+    font-size: 0.9em;
+}
+
+
+/** Appearance of data tables ************************************************/
+
+.dataTables_paginate {
+  font-size: 0.75em;
+}

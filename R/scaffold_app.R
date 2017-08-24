@@ -59,7 +59,7 @@ scaffold_module <- function(app_dir, app_template, module_config, overwrite = FA
 #' # scaffold app
 #' setwd("/tmp")
 #' scaffold_app("/tmp/config.yml")
-scaffold_app <- function(yaml_config_file) {
+scaffold_app <- function(yaml_config_file, overwrite = FALSE) {
   # load configuration from YAML file
   yaml_config <- get_config(yaml_config_file)
 
@@ -96,7 +96,8 @@ scaffold_app <- function(yaml_config_file) {
     scaffold_module(
       app_dir = yaml_config$`app-directory`,
       app_template = yaml_config$`app-template`,
-      module_config = module_config
+      module_config = module_config,
+      overwrite = overwrite
     )
   }
 

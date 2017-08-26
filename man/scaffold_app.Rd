@@ -4,7 +4,7 @@
 \alias{scaffold_app}
 \title{Create boilerplate code from config file}
 \usage{
-scaffold_app(yaml_config_file)
+scaffold_app(yaml_config_file, overwrite = FALSE)
 }
 \arguments{
 \item{yaml_config_file}{String pointing to the path of a YAML file}

@@ -13,6 +13,10 @@
     list(
       id = ns("headline-help"),
       help = "Some help message specific to the {{name}} module"
+    ),
+    list(
+      id = ns("plot-help"),
+      help = "Really cool plot"
     )
   )
 

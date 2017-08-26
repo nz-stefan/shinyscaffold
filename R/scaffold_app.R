@@ -10,8 +10,8 @@
 #' functions need to be called in the app's main \code{ui.R} and
 #' \code{server.R} files.
 #' @param app_dir Path to root directory of the Shiny app
-#' @param app_template App template to use for the module. Currently only
-#' "shinydashboard" is supported.
+#' @param template Template to use for the module. Use \code{list_mod_templates}
+#' to list available module templates.
 #' @param module_config Configuration of the module in the form of a list, e.g.
 #' \code{list(id = "overview", name = "Overview Module")}
 #' @param overwrite Logical indicating whether existing module files should be
@@ -21,8 +21,8 @@
 #'   id = "overview",
 #'   name = "Overview"
 #' )
-#' scaffold_module("app", "shinydashboard", module_conf)
-scaffold_module <- function(app_dir, app_template, module_config, overwrite = FALSE) {
+#' scaffold_module("app", "blankpage", module_conf)
+scaffold_module <- function(app_dir, template, module_config, overwrite = FALSE) {
   # create module directory
   mod_dir <- file.path(app_dir, "modules", module_config$id)
   dir.create(mod_dir, recursive = TRUE, showWarnings = FALSE)
@@ -37,8 +37,8 @@ scaffold_module <- function(app_dir, app_template, module_config, overwrite = FA
     }
     process_template(
       config = module_config,
-      app_template = app_template,
-      template_name = paste0("mod_", templ),
+      template_path = file.path("mod-templates", template),
+      template_name = templ,
       fout = file.path(mod_dir, templ)
     )
   }
@@ -82,7 +82,7 @@ scaffold_app <- function(yaml_config_file, overwrite = FALSE) {
   for(templ in c("global.R", "server.R", "ui.R")) {
     process_template(
       config = yaml_config,
-      app_template = yaml_config$`app-template`,
+      template_path = file.path("app-templates", yaml_config$`app-template`),
       template = templ,
       fout = file.path(yaml_config$`app-directory`, templ)
     )
@@ -95,15 +95,18 @@ scaffold_app <- function(yaml_config_file, overwrite = FALSE) {
 
     scaffold_module(
       app_dir = yaml_config$`app-directory`,
-      app_template = yaml_config$`app-template`,
+      template = module_config$template,
       module_config = module_config,
       overwrite = overwrite
     )
   }
 
   # copy assets
-  copy_asset(yaml_config$`app-directory`, yaml_config$`app-template`, "style.css", "css")
-  copy_asset(yaml_config$`app-directory`, yaml_config$`app-template`, "ui-utils.R", "utils")
+  asset_dir <- file.path("app-templates", yaml_config$`app-template`, "assets")
+  asset_files <- list.files(system.file(asset_dir, package = "shinyscaffold"))
+  for(asset_file in asset_files) {
+    copy_asset(yaml_config$`app-directory`, yaml_config$`app-template`, asset_file)
+  }
 
   cat("App scaffolded\n")
 }
@@ -113,7 +116,15 @@ scaffold_app <- function(yaml_config_file, overwrite = FALSE) {
 #' @description Lists all app templates available for scaffolding
 #' @examples list_app_templates()
 list_app_templates <- function() {
-  dir(system.file("templates", package = "shinyscaffold"))
+  dir(system.file("app-templates", package = "shinyscaffold"))
+}
+
+
+#' List available module templates
+#' @description Lists all module templates available for scaffolding
+#' @examples list_mod_templates()
+list_mod_templates <- function() {
+  dir(system.file("mod-templates", package = "shinyscaffold"))
 }
 
 
@@ -155,9 +166,9 @@ get_config <- function(yaml_config_file) {
 }
 
 
-process_template <- function(config, app_template, template_name, fout) {
+process_template <- function(config, template_path, template_name, fout) {
   # load template
-  templ_file <- system.file(file.path("templates", app_template), template_name, package = "shinyscaffold")
+  templ_file <- system.file(template_path, template_name, package = "shinyscaffold")
   templ <- readLines(templ_file)
 
   # render template and export to file
@@ -166,10 +177,15 @@ process_template <- function(config, app_template, template_name, fout) {
 }
 
 
-copy_asset <- function(app_directory, app_template, asset_filename, asset_type) {
-  if(asset_type %in% c("css", "images")) {
-    dest_path <- file.path(app_directory, "www", "assets", asset_type)
-  } else if(asset_type == "utils") {
+copy_asset <- function(app_directory, app_template, asset_filename) {
+  # determine path where to copy the asset to (based on file extension)
+  file_type <- tools::file_ext(asset_filename)
+
+  if(file_type %in% c("png", "jpg", "gif", "svg")) {
+    dest_path <- file.path(app_directory, "www", "assets", "images")
+  } else if (file_type %in% c("css")) {
+    dest_path <- file.path(app_directory, "www", "assets", "css")
+  } else if (file_type %in% c("r", "R")) {
     dest_path <- file.path(app_directory, "utils")
   } else {
     stop("Unknown asset type. Must be one of c('css', 'images', 'utils')")
@@ -178,7 +194,8 @@ copy_asset <- function(app_directory, app_template, asset_filename, asset_type) 
   cat("Copying asset", asset_filename,"...\n")
 
   file.copy(
-    from = system.file(file.path("templates", app_template), "assets", asset_filename, package = "shinyscaffold"),
-    to = file.path(dest_path, asset_filename)
+    from = system.file(file.path("app-templates", app_template), "assets", asset_filename, package = "shinyscaffold"),
+    to = file.path(dest_path, asset_filename),
+    overwrite = TRUE
   )
 }

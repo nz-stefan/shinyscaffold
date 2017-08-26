@@ -1,3 +1,11 @@
+/** Theme adjustments ********************************************************/
+
+.fixed-width {
+  max-width: 960px;
+  margin: auto;
+}
+
+
 /** Navbar styles ************************************************************/
 
 /* Hide title and arrows */
@@ -62,7 +70,6 @@
   outline: none;
   padding: 5px 10px;
   margin-top: 12px;
-  margin-right: 20px;
 }
 
 .btn-help:hover {

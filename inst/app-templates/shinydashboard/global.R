@@ -12,6 +12,7 @@ library(shinyWidgets)
 library(shinycssloaders)
 library(shinyjs)
 library(rintrojs)
+library(highcharter)
 
 
 # Load utilities ----------------------------------------------------------

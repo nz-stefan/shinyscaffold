@@ -4,13 +4,13 @@
 \alias{scaffold_module}
 \title{Create Shiny module boilerplate code}
 \usage{
-scaffold_module(app_dir, app_template, module_config, overwrite = FALSE)
+scaffold_module(app_dir, template, module_config, overwrite = FALSE)
 }
 \arguments{
 \item{app_dir}{Path to root directory of the Shiny app}
 
-\item{app_template}{App template to use for the module. Currently only
-"shinydashboard" is supported.}
+\item{template}{Template to use for the module. Use \code{list_mod_templates}
+to list available module templates.}
 
 \item{module_config}{Configuration of the module in the form of a list, e.g.
 \code{list(id = "overview", name = "Overview Module")}}
@@ -36,5 +36,5 @@ module_conf <- list(
   id = "overview",
   name = "Overview"
 )
-scaffold_module("app", "shinydashboard", module_conf)
+scaffold_module("app", "blankpage", module_conf)
 }

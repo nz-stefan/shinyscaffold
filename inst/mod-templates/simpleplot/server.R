@@ -12,4 +12,10 @@
 
   # obtain namespace
   ns <- session$ns
+
+  # Plot --------------------------------------------------------------------
+
+  output$plot <- renderHighchart({
+    hchart(mtcars, "scatter", hcaes(x = hp, y = mpg))
+  })
 }

@@ -14,6 +14,9 @@
     div(
       id = ns("headline-help"),
       h3("{{name}}")
+    ),
+    material_card(
+      div(id = ns("plot-help"), highchartOutput(ns("plot")))
     )
   )
 }
